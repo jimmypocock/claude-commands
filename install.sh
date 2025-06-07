@@ -129,7 +129,7 @@ js_files=$(curl -sSL "https://api.github.com/repos/jimmypocock/claude-commands/c
 if [ -n "$js_files" ]; then
     for js_file in $js_files; do
         echo -n "  Downloading $js_file... "
-        if curl -sSL "$GITHUB_RAW/$js_file" -o ".claude/$js_file" 2>/dev/null; then
+        if curl -sSL "$GITHUB_RAW/$js_file" -o ".claude/commands/$js_file" 2>/dev/null; then
             echo "done"
         else
             echo "failed (non-critical)"
