@@ -2,6 +2,14 @@
 
 A collection of reusable command templates for Claude Code to help automate common development workflows.
 
+## Quick Install
+
+Run this command from your project's root directory:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/jimmypocock/claude-commands/main/install.sh | bash
+```
+
 ## Attribution
 
 Some commands originally came from GrumpyPigeon and apf6 in a conversation found here: https://www.reddit.com/r/ClaudeAI/comments/1l3gouj/share_your_claude_code_commands/ but have been revised.
@@ -54,14 +62,6 @@ This repository provides a set of markdown files that contain structured instruc
 - **cost-analysis** - Analyze and optimize costs
 
 ## Installation
-
-### Quick Install
-
-Run this command from your project's root directory:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/jimmypocock/claude-commands/main/install.sh | bash
-```
 
 ### Manual Installation
 
