@@ -113,12 +113,30 @@ for cmd in "data-extract.md" "usage-report.md" "performance-trends.md" "cost-ana
     fi
 done
 
-# Also download CLAUDE.md for reference
+# Also download CLAUDE.md and todo.js for reference
 print_status "Downloading CLAUDE.md for reference..."
 if curl -sSL "$GITHUB_RAW/CLAUDE.md" -o ".claude/CLAUDE.md" 2>/dev/null; then
     print_status "CLAUDE.md downloaded successfully"
 else
     print_warning "Failed to download CLAUDE.md (non-critical)"
+fi
+
+# Download all JavaScript utilities from root directory
+print_status "Downloading JavaScript utilities..."
+# Get list of .js files from GitHub API
+js_files=$(curl -sSL "https://api.github.com/repos/jimmypocock/claude-commands/contents" 2>/dev/null | grep '"name":.*\.js"' | sed 's/.*"name": *"\([^"]*\)".*/\1/' | sort -u)
+
+if [ -n "$js_files" ]; then
+    for js_file in $js_files; do
+        echo -n "  Downloading $js_file... "
+        if curl -sSL "$GITHUB_RAW/$js_file" -o ".claude/$js_file" 2>/dev/null; then
+            echo "done"
+        else
+            echo "failed (non-critical)"
+        fi
+    done
+else
+    print_warning "No JavaScript utilities found or GitHub API unavailable"
 fi
 
 # Add .claude to .gitignore if it doesn't exist
